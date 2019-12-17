@@ -1,0 +1,18 @@
+{
+    "name": "saeed.m/youtube-caption-scrapper",
+    "authors": [
+        {
+            "name": "Saeed M.",
+            "email": "saeed.moqadam@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Smoqadam\\": "src"
+        }
+    },
+    "require": {
+        "ext-simplexml": "*",
+        "ext-json": "*"
+    }
+}
