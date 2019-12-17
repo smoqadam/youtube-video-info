@@ -11,20 +11,38 @@ use Smoqadam\Response\Caption;
 class Scrapper
 {
     private $videoId;
-    private $lang;
-    private $caption;
     private $videoInfoUrl = 'https://youtube.com/get_video_info?video_id=';
 
-    /**
+    /** 'VVx6ntr5OqIa'
      * @var array
      */
     private $videoInfo;
 
-    public function __construct($videoId)
+    public function __construct($videoId = '')
+    {
+        $this->setVideoId($videoId);
+    }
+
+    public function setVideoId($videoId)
     {
         $this->videoId = $videoId;
-        parse_str(file_get_contents($this->videoInfoUrl . $videoId), $info);
+        if (!$this->videoId) {
+            throw new \Exception('Video Id is empty');
+        }
+
+        parse_str(file_get_contents($this->videoInfoUrl . $this->videoId), $info);
+
+        if (!isset($info['player_response'])) {
+            throw new \Exception("Video not found");
+        }
         $this->videoInfo = json_decode($info['player_response'], true);
+        return $this;
+    }
+
+
+    public function getVideoInfo()
+    {
+        return $this->videoInfo;
     }
 
     public function getDetails(): Details

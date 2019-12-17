@@ -1,6 +1,6 @@
 <?php
 
-use Smoqadam\Collection;
+
 use Smoqadam\Scrapper;
 use Smoqadam\Response;
 
@@ -13,12 +13,8 @@ $scrapper = new Scrapper('VVx6ntr5OqI');
 
 $formats = $scrapper->getFormats();
 //echo json_decode($formats);
-///** @var Response\Entity\Format $format */
-//foreach ($formats as $format) {
-//    echo $format->getUrl();
-//}
-
-//$subs = $scrapper->getCaption('en');
-//print_r($subs);
-
-
+/** @var Response\Entity\Format $format */
+foreach ($formats as $format) {
+    echo $format->getUrl();
+    echo '<br>';
+}

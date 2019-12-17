@@ -13,9 +13,11 @@ class Caption extends Collection
 
     public function __construct($captions, $lang)
     {
+        if (!isset($captions['playerCaptionsTracklistRenderer']) || !isset($captions['playerCaptionsTracklistRenderer']['captionTracks'])) {
+            throw new \Exception('Caption not found');
+        }
         $this->captions = $captions['playerCaptionsTracklistRenderer']['captionTracks'];
         $this->lang = $lang;
-        $this->parse();
     }
 
     public function getCaptionUrl()
@@ -28,7 +30,7 @@ class Caption extends Collection
         return false;
     }
 
-    public function parse()
+    public function parse(): self
     {
         $captionUrl = $this->getCaptionUrl();
         if (!$captionUrl) {
@@ -43,10 +45,6 @@ class Caption extends Collection
             $sub->setText((string)$caption);
             $this[] = $sub;
         }
-    }
-
-    public function getUrl()
-    {
-        return $this->captions['baseUrl'];
+        return $this;
     }
 }
