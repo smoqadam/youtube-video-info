@@ -2,10 +2,9 @@
 
 namespace Response;
 
-use Smoqadam\Response\Captions;
 use Smoqadam\Response\Formats;
 use PHPUnit\Framework\TestCase;
-use Smoqadam\Scrapper;
+use Smoqadam\Video;
 
 class FormatsTest extends TestCase
 {
@@ -18,7 +17,7 @@ class FormatsTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->scrapper = new Scrapper($this->videoId);
+        $this->scrapper = new Video($this->videoId);
         $this->formats = $this->scrapper->getFormats();
         parent::setUp();
     }

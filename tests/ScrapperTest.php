@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Smoqadam\Response\Captions;
 use Smoqadam\Response\Details;
 use Smoqadam\Response\Formats;
-use Smoqadam\Scrapper;
+use Smoqadam\Video;
 
 class ScrapperTest extends TestCase
 {
@@ -14,7 +14,7 @@ class ScrapperTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->scrapper = new Scrapper('VVx6ntr5OqI');
+        $this->scrapper = new Video('VVx6ntr5OqI');
         parent::setUp();
     }
 

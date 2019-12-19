@@ -4,7 +4,7 @@ namespace Response;
 
 use PHPUnit\Framework\TestCase;
 use Smoqadam\Response\Captions;
-use Smoqadam\Scrapper;
+use Smoqadam\Video;
 
 class CaptionTest extends TestCase
 {
@@ -16,7 +16,7 @@ class CaptionTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->scrapper = new Scrapper('VVx6ntr5OqI');
+        $this->scrapper = new Video('VVx6ntr5OqI');
         $this->caption = $this->scrapper->getCaptions();
         parent::setUp();
     }

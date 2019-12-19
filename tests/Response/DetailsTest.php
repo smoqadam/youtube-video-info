@@ -5,7 +5,7 @@ namespace Response;
 use PHPUnit\Framework\TestCase;
 use Smoqadam\Response\Captions;
 use Smoqadam\Response\Details;
-use Smoqadam\Scrapper;
+use Smoqadam\Video;
 
 class DetailsTest extends TestCase
 {
@@ -18,7 +18,7 @@ class DetailsTest extends TestCase
 
     protected function setUp(): void
     {
-        $this->scrapper = new Scrapper($this->videoId);
+        $this->scrapper = new Video($this->videoId);
         $this->details = $this->scrapper->getDetails();
         parent::setUp();
     }

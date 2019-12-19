@@ -8,7 +8,7 @@ use Smoqadam\Response\Details;
 use Smoqadam\Response\Formats;
 use Smoqadam\Response\Captions;
 
-class Scrapper
+class Video
 {
     /**
      * @var string
