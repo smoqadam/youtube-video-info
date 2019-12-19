@@ -4,7 +4,7 @@
 namespace Smoqadam;
 
 
-class Collection implements \ArrayAccess, \Iterator, \JsonSerializable
+class Collection implements \ArrayAccess, \Iterator, \Countable, \JsonSerializable
 {
     protected $array;
 
@@ -89,8 +89,16 @@ class Collection implements \ArrayAccess, \Iterator, \JsonSerializable
     /**
      * @inheritDoc
      */
+    public function count()
+    {
+        return count($this->array);
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function jsonSerialize()
     {
-        return json_encode($this->array);
+        return $this->array;
     }
 }

@@ -8,13 +8,8 @@ require_once 'vendor/autoload.php';
 
 $scrapper = new Scrapper('VVx6ntr5OqI');
 
-//$thumbs = $scrapper->getDetails()->getThumbnails();
-//print_r($thumbs);
+//$captions = $scrapper->getCaptions();
 
-$formats = $scrapper->getFormats();
-//echo json_decode($formats);
-/** @var Response\Entity\Format $format */
-foreach ($formats as $format) {
-    echo $format->getUrl();
-    echo '<br>';
-}
+//echo json_encode($captions);
+
+echo json_encode($scrapper->getFormats());

@@ -6,7 +6,7 @@ namespace Smoqadam\Response;
 use Smoqadam\Collection;
 use Smoqadam\Response\Entity\Subtitle;
 
-class Caption extends Collection
+class Captions extends Collection
 {
     private $captions;
     private $lang;
@@ -18,8 +18,12 @@ class Caption extends Collection
         }
         $this->captions = $captions['playerCaptionsTracklistRenderer']['captionTracks'];
         $this->lang = $lang;
+        $this->parse();
     }
 
+    /**
+     * @return bool|mixed
+     */
     public function getCaptionUrl()
     {
         foreach ($this->captions as $captionTrack) {
@@ -30,6 +34,12 @@ class Caption extends Collection
         return false;
     }
 
+    /**
+     * Fetch and parse the video caption
+     *
+     * @return $this
+     * @throws \Exception
+     */
     public function parse(): self
     {
         $captionUrl = $this->getCaptionUrl();

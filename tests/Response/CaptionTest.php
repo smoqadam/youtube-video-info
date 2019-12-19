@@ -3,13 +3,13 @@
 namespace Response;
 
 use PHPUnit\Framework\TestCase;
-use Smoqadam\Response\Caption;
+use Smoqadam\Response\Captions;
 use Smoqadam\Scrapper;
 
 class CaptionTest extends TestCase
 {
     /**
-     * @var Caption
+     * @var Captions
      */
     private $caption;
     private $scrapper;
@@ -17,7 +17,7 @@ class CaptionTest extends TestCase
     protected function setUp(): void
     {
         $this->scrapper = new Scrapper('VVx6ntr5OqI');
-        $this->caption = $this->scrapper->getCaption();
+        $this->caption = $this->scrapper->getCaptions();
         parent::setUp();
     }
 

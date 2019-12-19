@@ -2,7 +2,7 @@
 
 
 use PHPUnit\Framework\TestCase;
-use Smoqadam\Response\Caption;
+use Smoqadam\Response\Captions;
 use Smoqadam\Response\Details;
 use Smoqadam\Response\Formats;
 use Smoqadam\Scrapper;
@@ -37,8 +37,8 @@ class ScrapperTest extends TestCase
 
     public function testGetCaption()
     {
-        $captions = $this->scrapper->getCaption();
-        $this->assertInstanceOf(Caption::class, $captions);
+        $captions = $this->scrapper->getCaptions();
+        $this->assertInstanceOf(Captions::class, $captions);
     }
 
     public function testGetDetails()

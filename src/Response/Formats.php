@@ -9,12 +9,15 @@ use Smoqadam\Response\Entity\Format;
 
 class Formats extends Collection
 {
-    public function __construct($streamDetail)
+    public function __construct(array $streamDetail)
     {
+        if (!isset($streamDetail['adaptiveFormats'])) {
+            throw new \Exception('Video formats not found');
+        }
         $this->setFormats($streamDetail['adaptiveFormats']);
     }
 
-    public function setFormats($formats)
+    public function setFormats($formats): void
     {
         foreach ($formats as $format) {
             $formatObj = new Format();

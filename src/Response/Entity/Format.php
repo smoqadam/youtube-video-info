@@ -1,10 +1,7 @@
 <?php
 
-
 namespace Smoqadam\Response\Entity;
 
-
-use Smoqadam\Collection;
 
 class Format implements \JsonSerializable
 {
@@ -134,6 +131,14 @@ class Format implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        // TODO: Implement jsonSerialize() method.
+        return [
+            'url' => $this->getUrl(),
+            'fps' => $this->getFps(),
+            'quality' => $this->getQuality(),
+            'size' => $this->getSize(),
+            'width' => $this->getWidth(),
+            'height' => $this->getHeight(),
+            'mimeType' => $this->getMimeType(),
+        ];
     }
 }

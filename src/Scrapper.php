@@ -6,14 +6,22 @@ namespace Smoqadam;
 
 use Smoqadam\Response\Details;
 use Smoqadam\Response\Formats;
-use Smoqadam\Response\Caption;
+use Smoqadam\Response\Captions;
 
 class Scrapper
 {
+    /**
+     * @var string
+     */
     private $videoId;
+
+    /**
+     * base url for getting the video information
+     * @var string
+     */
     private $videoInfoUrl = 'https://youtube.com/get_video_info?video_id=';
 
-    /** 'VVx6ntr5OqIa'
+    /**
      * @var array
      */
     private $videoInfo;
@@ -23,11 +31,18 @@ class Scrapper
         $this->setVideoId($videoId);
     }
 
-    public function setVideoId($videoId)
+    /**
+     * Set the video ID and get the raw video information
+     *
+     * @param $videoId
+     * @return $this
+     * @throws \Exception
+     */
+    public function setVideoId($videoId): self
     {
         $this->videoId = $videoId;
         if (!$this->videoId) {
-            throw new \Exception('Video Id is empty');
+            throw new \InvalidArgumentException('Video Id is empty');
         }
 
         parse_str(file_get_contents($this->videoInfoUrl . $this->videoId), $info);
@@ -39,29 +54,38 @@ class Scrapper
         return $this;
     }
 
-
-    public function getVideoInfo()
+    /**
+     * @return array
+     */
+    public function getVideoInfo(): array
     {
         return $this->videoInfo;
     }
 
+    /**
+     * @return Details
+     */
     public function getDetails(): Details
     {
         return new Details($this->videoInfo['videoDetails']);
     }
 
-    public function getFormats()
+    /**
+     * @return Formats
+     * @throws \Exception
+     */
+    public function getFormats(): Formats
     {
         return new Formats($this->videoInfo['streamingData']);
     }
 
-    public function getAdaptiveFormats()
+    /**
+     * @param string $lang [default='en']
+     * @return Captions
+     * @throws \Exception
+     */
+    public function getCaptions($lang = 'en'): Captions
     {
-        return $this->videoInfo['streamingData']['adaptiveFormats'];
-    }
-
-    public function getCaption($lang = 'en')
-    {
-        return new Caption($this->videoInfo['captions'], $lang);
+        return new Captions($this->videoInfo['captions'], $lang);
     }
 }

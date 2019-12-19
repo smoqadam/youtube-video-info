@@ -13,28 +13,43 @@ class Details
         $this->details = $details;
     }
 
-    public function getVideoId()
+    /**
+     * @return string
+     */
+    public function getVideoId(): string
     {
         return $this->details['videoId'];
     }
 
-    public function getTitle()
+    /**
+     * @return string
+     */
+    public function getTitle(): string
     {
         return $this->details['title'];
     }
 
-    public function getThumbnails()
+    /**
+     * @return array
+     */
+    public function getThumbnails(): array
     {
         return $this->details['thumbnail']['thumbnails'];
     }
 
-    public function getViewCount()
+    /**
+     * @return int
+     */
+    public function getViewCount(): int
     {
-        return $this->details['viewCount'];
+        return intval($this->details['viewCount']);
     }
 
-    public function getRating()
+    /**
+     * @return float
+     */
+    public function getRating(): float
     {
-        return $this->details['averageRating'];
+        return floatval($this->details['averageRating']);
     }
 }
